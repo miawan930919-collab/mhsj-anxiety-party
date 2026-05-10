@@ -20,8 +20,8 @@
 /* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
 :root { 
   --background-color: #ffffff; /* Background color for the entire website, including individual sections */
-  --default-color: #555555; /* Default color used for the majority of the text content across the entire website */
-  --heading-color: #7a728b; /* Color for headings, subheadings and title throughout the website */
+  --default-color: #544d6d; /* Default color used for the majority of the text content across the entire website */
+  --heading-color: #a582cb; /* Color for headings, subheadings and title throughout the website */
   --accent-color: #ddbfff; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
   --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
   --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
@@ -45,7 +45,7 @@
 }
 
 .dark-background {
-  --background-color: #7a728b;
+  --background-color: #935e97;
   --default-color: #ffffff;
   --heading-color: #ffffff;
   --surface-color: #284e62;
@@ -140,10 +140,10 @@ h6 {
 }
 
 @keyframes color-loop {
-  0%   { color: rgb(255, 205, 164); } /* 你原本的淺橘色 */
-  33%  { color: #ff9a9e; }             /* 柔粉色 */
-  66%  { color: #a1c4fd; }             /* 天藍色 */
-  100% { color: rgb(255, 205, 164); } /* 回到起點確保平滑 */
+  0%   { color: rgb(255, 195, 195); } /* 你原本的淺橘色 */
+  33%  { color: #ffb0fb; }             /* 柔粉色 */
+  66%  { color: #bfedff; }             /* 天藍色 */
+  100% { color: rgb(255, 195, 195); } /* 回到起點確保平滑 */
 }
 
 /* 應用到標題上的樣式 */
@@ -263,7 +263,7 @@ h6 {
 /* Global Header on Scroll
 ------------------------------*/
 .scrolled .header {
-  --background-color: #7a728b;
+  --background-color: #935e97;
 }
 
 /*--------------------------------------------------------------
@@ -1033,10 +1033,10 @@ section,
 # Featured Services Section
 --------------------------------------------------------------*/
 .featured-services {
-  --cyan-color: #0dcaf0;
-  --orange-color: #fd7e14;
-  --teal-color: #20c997;
-  --red-color: #df1529;
+  --cyan-color: #f0788c;
+  --orange-color: #ff7ec5;
+  --teal-color: #9375ff;
+  --red-color: #65d3ff;
 }
 
 .featured-services .service-item {
@@ -1366,7 +1366,7 @@ section,
 }
 
 .testimonials .testimonial-item .stars i {
-  color: #ffc107;
+  color: #ff98e5;
   margin: 0 1px;
 }
 
@@ -1858,7 +1858,7 @@ section,
   font-weight: 400;
   color: #ffffff;
   display: inline-block;
-  background-color: var(--accent-color);
+  background-color: #935e97;
 }
 
 .portfolio .portfolio-content .portfolio-info p {
@@ -2658,4 +2658,34 @@ section,
   padding-left: 5px;
   color: color-mix(in srgb, var(--default-color), transparent 60%);
   font-size: 14px;
+}
+
+/* 統一修改燈箱（GLightbox）說明區域的顏色 */
+.gslide-description {
+    background: #62466c !important; /* 深紫色底 */
+    border-top: 1px solid #ffb0fb;  /* 頂部加一條粉色細線，增加精緻感 */
+    max-height: 250px !important; 
+}
+
+/* 將標題改為白色 */
+.gslide-title {
+    color: #fde6ff !important;
+    font-size: 1.5rem !important;
+    font-weight: bold !important;
+    text-shadow: 0 0 10px rgba(255, 164, 225, 0.8); /* 粉色霓虹發光 */
+}
+
+/* 將描述文字改為白色 */
+.gslide-desc {
+    color: #f0f0f0 !important; /* 稍微偏白灰，讀起來比較舒服 */
+    font-size: 1.1rem !important;
+}
+
+/* 讓作品集中的放大鏡圖示置中 */
+.portfolio-info .preview-link {
+    left: 0 !important;   /* 取消原本的左邊偏置 */
+    right: 0 !important;  /* 同時設定右邊為 0 */
+    margin: 0 auto !important; /* 水平居中 */
+    width: 44px !important;    /* 根據你模板圖示的大小微調 */
+    text-align: center !important;
 }
