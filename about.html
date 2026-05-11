@@ -539,18 +539,28 @@ function drawAll() {
   
   // 3. 寫入字體與暱稱
   ctx.textBaseline = "top";
+
+   // -----------------------------------------------------------------
+  // 🔮 核心修正：偵測是不是 iOS 裝置（iPhone / iPad / Mac Safari）
+  // -----------------------------------------------------------------
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+                (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  
+  // 如果是 iOS，我們把文字位置往上提 40 像素（可根據實際狀況調整數字）
+  const iosOffset = isIOS ? -40 : 0; 
+  // -----------------------------------------------------------------
   
   // 1. 先設定暱稱的顏色，然後寫入暱稱
   ctx.fillStyle = "#807096";
   ctx.font = `bold ${CONFIG.nameText.fontSize}px ${CONFIG.nameText.font}`;
   const userName = document.getElementById('license-name').value;
-  ctx.fillText(userName, CONFIG.nameText.x, CONFIG.nameText.y);
+  ctx.fillText(userName, CONFIG.nameText.x, CONFIG.nameText.y+ iosOffset); // 加上偏移量);
   
   // 2. 重新設定種類的顏色，然後寫入種類
   ctx.fillStyle = "#675a5a";
   ctx.font = `${CONFIG.typeText.fontSize}px ${CONFIG.typeText.font}`;
   const userType = magicalGirls[currentSelectedId].type;
-  ctx.fillText(userType, CONFIG.typeText.x, CONFIG.typeText.y);
+  ctx.fillText(userType, CONFIG.typeText.x, CONFIG.typeText.y+ iosOffset); // 加上偏移量);
 }
 
 // 監聽暱稱輸入
