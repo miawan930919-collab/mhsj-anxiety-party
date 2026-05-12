@@ -2689,3 +2689,31 @@ section,
     width: 44px !important;    /* 根據你模板圖示的大小微調 */
     text-align: center !important;
 }
+
+/* 創作廣場專用投稿按鈕 */
+.btn-submit-magic {
+    background: transparent !important;
+    color: #ddbfff !important;
+    border: 2px solid #ddbfff !important;
+    padding: 12px 35px !important;
+    font-size: 1.1rem !important;
+    font-weight: bold !important;
+    border-radius: 50px !important;
+    cursor: pointer !important;
+    box-shadow: 0 0 10px rgba(255, 176, 251, 0.3) !important;
+    transition: all 0.3s ease !important;
+}
+
+/* 當滑鼠移上去時：按鈕會微微放大、背景變粉、字體變深紫色 */
+.btn-submit-magic:hover {
+    transform: scale(1.05) !important;
+    background: #ddbfff !important;
+    color: #2D1B36 !important; /* 妳網頁的深紫色 */
+    box-shadow: 0 0 20px rgba(255, 176, 251, 0.8) !important; /* 強烈發光感 */
+}
+
+/* 只有當同時具備 .active（當前頁面）與 .download-rainbow（專屬標籤）時，才啟動變色 */
+.navmenu ul li a.active.download-rainbow {
+    animation: color-loop 5s linear infinite !important;
+    font-weight: bold !important;
+}
