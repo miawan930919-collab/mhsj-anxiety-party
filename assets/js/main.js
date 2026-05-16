@@ -119,7 +119,8 @@
    * Initiate glightbox
    */
   const glightbox = GLightbox({
-    selector: '.glightbox'
+    selector: '.glightbox',
+    moreLength: 0
   });
 
   /**
