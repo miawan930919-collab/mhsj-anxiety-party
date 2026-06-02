@@ -89,14 +89,16 @@ h6 {
 
 /* PHP Email Form Messages
 ------------------------------*/
+/* 老師這段 CSS 的意思是：把報錯盒子的高度、內距、字體全部榨乾歸零，徹底消滅大紅色區塊！ */
 .php-email-form .error-message {
-  display: none;
-  background: #df1529;
-  color: #ffffff;
-  text-align: left;
-  padding: 15px;
-  margin-bottom: 24px;
-  font-weight: 600;
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  font-size: 0 !important;
 }
 
 .php-email-form .sent-message {
@@ -2716,4 +2718,35 @@ section,
 .navmenu ul li a.active.download-rainbow {
     animation: color-loop 5s linear infinite !important;
     font-weight: bold !important;
+}
+
+/* =================================================== */
+/* 🔮 魔法通訊表單優化控制台 */
+/* =================================================== */
+
+/* 1. 修正發送按鈕貼近下緣的問題 */
+.php-email-form {
+    padding-bottom: 40px !important; /* 👈 在方框底部墊出 40px 的隱形厚度，讓按鈕與方框下緣有漂亮的呼吸空間 */
+}
+
+/* 2. 修改輸入框「已經打進去的字」與「邊框」的顏色 */
+.php-email-form input, 
+.php-email-form textarea {
+    color: #563075 !important;           /* ✍️ 玩家打字時的顏色：改成純白色（更清晰） */
+    background: rgba(255, 255, 255, 0.05) !important; /* 輸入框底色：微透明白，襯托深紫背景 */
+    border: 1px solid #a582cb !important; /* 🎨 輸入框預設邊框：改成淡淡的粉紫色線條 */
+}
+
+/* 3. 當玩家點擊輸入框（選取狀態）時，讓邊框發光 */
+.php-email-form input:focus, 
+.php-email-form textarea:focus {
+    border-color: #ddbfff !important;     /* 邊框變妳最愛的粉紅色 */
+    box-shadow: 0 0 10px rgba(255, 176, 251, 0.5) !important; /* 帶有一圈溫柔的粉色霓虹發光 */
+}
+
+/* 4. 修改輸入框內的「預設說明字 (Placeholder)」顏色 */
+.php-email-form input::placeholder, 
+.php-email-form textarea::placeholder {
+    color: #a582cb !important;           /* 💭 預設灰色字改成「粉紫色」，與整體世界觀更融合 */
+    opacity: 0.8 !important;             /* 稍微帶有一點透明度 */
 }
