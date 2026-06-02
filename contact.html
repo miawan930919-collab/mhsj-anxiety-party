@@ -130,7 +130,61 @@
   </div><!-- End Container -->
 
 </section>
+ <!-- Contact Section -->
+<section id="contact" class="contact section py-5">
 
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+    <!-- 調整為置中單一欄位，讓表單在網頁中間看起來非常高檔 -->
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        
+        <!-- 💡 改造點 1：綁定 Google GAS 網址與 ID，保留 php-email-form 類別繼承原本的 CSS 樣式 -->
+        <form id="google-contact-form" action="https://script.google.com/macros/s/AKfycbw2tm5cRUjPcG88LsoCGodYTCUTYBY7YqtuOatGsGQXVgyjgD-d2-Byr6taAS0QO6SRNg/exec" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="500">
+          <div class="row gy-4">
+
+            <!-- 💡 改造點 2：全文字換成中文，並在 style 注入妳超愛的 DotGothic16 像素字體 -->
+            <div class="col-md-6">
+              <input type="text" name="name" class="form-control" placeholder="魔法少女暱稱" required="" style="font-family: 'DotGothic16', sans-serif !important;">
+            </div>
+
+            <div class="col-md-6 ">
+              <input type="email" name="email" class="form-control" placeholder="您的聯絡 Email" required="" style="font-family: 'DotGothic16', sans-serif !important;">
+            </div>
+
+            <div class="col-md-12">
+              <input type="text" name="subject" class="form-control" placeholder="留言主旨" required="" style="font-family: 'DotGothic16', sans-serif !important;">
+            </div>
+
+            <div class="col-md-12">
+              <textarea class="form-control" name="message" rows="5" placeholder="請輸入想留言的內容..." required="" style="font-family: 'DotGothic16', sans-serif !important;"></textarea>
+            </div>
+
+            <div class="col-md-12 text-center">
+              <!-- 💡 改造點 3：保留這三個信號盒子，並換成中文，供老師步驟五的 JS 去控制顯示開關 -->
+              <div class="loading" style="display: none; color: #ddbfff; font-family: 'DotGothic16';">魔法留言傳送中...</div>
+              
+              <!-- 老師的步驟 6：這裡加上 style="display:none !important;" 徹底消滅預設大紅框 -->
+              <div class="error-message" style="display:none !important;"></div>
+              
+              <!-- 成功訊息：換成妳的專屬深紫色像素對話框質感 -->
+              <div class="sent-message" style="display: none; background: #ddbfff; border: 2px solid #bf8df5; color: #935e97; padding: 15px; font-family: 'DotGothic16'; border-radius: 10px;">
+                ✨ 魔法留言發送成功，感謝妳的回饋！ ✨
+              </div>
+
+              <!-- 💡 改造點 4：按鈕直接套用我們之前做過最漂亮的「粉色霓虹發光按鈕」 -->
+              <button type="submit" class="btn-submit-magic mt-3">發送魔法留言</button>
+            </div>
+
+          </div>
+        </form>
+        
+      </div><!-- End Contact Form -->
+    </div>
+
+  </div>
+
+</section><!-- /Contact Section -->
 
   </main>
 
@@ -238,6 +292,54 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
+
+<script>
+  document.getElementById('google-contact-form').addEventListener('submit', function(e) {
+    e.preventDefault(); // 阻止網頁跳轉
+    
+    var form = this;
+    var loading = form.querySelector('.loading');
+    var errorMessage = form.querySelector('.error-message');
+    var sentMessage = form.querySelector('.sent-message');
+    
+    // 顯示 Loading，隱藏其他提示
+    loading.style.display = 'block';
+    errorMessage.style.display = 'none';
+    sentMessage.style.display = 'none';
+    
+    // 封裝表單資料
+    var formData = new FormData(form);
+    var searchParams = new URLSearchParams();
+    for (var pair of formData) {
+        searchParams.append(pair[0], pair[1]);
+    }
+    
+    // 用 fetch 發送 POST 請求到 Google GAS
+    fetch(form.action, {
+        method: 'POST',
+        body: searchParams,
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+    })
+    .then(response => response.text())
+    .then(data => {
+        loading.style.display = 'none';
+        if (data === 'success') {
+            sentMessage.style.display = 'block'; // 顯示成功畫面
+            form.reset(); // 清空表單
+        } else {
+            errorMessage.textContent = '傳送失敗，請稍後再試。錯誤原因：' + data;
+            errorMessage.style.display = 'block';
+        }
+    })
+    .catch(error => {
+        loading.style.display = 'none';
+        errorMessage.textContent = '連線錯誤：' + error;
+        errorMessage.style.display = 'block';
+    });
+  });
+</script>
 
 </body>
 
